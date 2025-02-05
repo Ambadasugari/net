@@ -1,0 +1,729 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&amp;display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: white;
+            height: 4500vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-section {
+            background-image: url('C:\\Users\\shannu\\Desktop\\new\\WhatsApp Image 2025-01-03 at 14.03.40_0ae0cadb.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 150vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .nlog {
+            height: 100px;
+            width: 170px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .header-right {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        #language-select {
+            margin-right: 15px;
+            padding: 8px;
+            font-size: 16px;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        .sign-in-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            background: rgb(229, 9, 20);
+            border-radius: 5px;
+            border: 0;
+            cursor: pointer;
+            transition: background-color 250ms ease;
+            text-decoration: none;
+        }
+        
+        .sign-in-button:hover {
+            background-color: rgb(204, 7, 14);
+        }
+        
+        .main-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .sub-text {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+        
+        .email-input-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .email-input {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            opacity: 0.5;
+            background-color: #000;
+            color: white;
+        }
+        
+        .start-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgb(229, 9, 20);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .start-button:hover {
+            background-color: rgb(204, 7, 14);
+        }
+        
+        .trending-section {
+            background-color: #141414;
+            padding: 20px;
+            padding-left: 150px;
+            margin-top: 20px;
+            z-index: 10;
+        }
+        
+        .trend-select {
+            margin-right: 15px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: transparent;
+            border: 1px solid #ccc;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .trend-select:hover {
+            background-color: rgb(204, 7, 14);
+        }
+        
+        .top-ten-movies-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: #000;
+            padding: 20px;
+        }
+        
+        .movie-card {
+            flex: 0 0 200px;
+            background-color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            height: 350px;
+            transition: transform 0.3s ease;
+        }
+        
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: inherit;
+        }
+        
+        .movie-card h3 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            margin: 0;
+            padding: 5px 10px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 5px;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .more-reasons {
+            background-color: #141414;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .reason-card {
+            background-color: #333;
+            border-radius: 10px;
+            padding-left: 70px;
+            padding-right: 70px;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            width: 200px;
+            margin: 20px;
+            display: inline-block;
+            text-align: left;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .reason-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .reason-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .movies-scroll {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+            transition: opacity 0.3s ease;
+        }
+        
+        .show-more-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: rgb(229, 9, 20);
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .show-more-btn:hover {
+            background-color: rgb(204, 7, 14);
+        }
+        
+        .more-movies {
+            display: none;
+        }
+        /* FAQ Section */
+        
+        .faq-section {
+            background-color: #141414;
+            padding: 95px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        /* FAQ Card */
+        
+        .faq-card {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            color: white;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        /* FAQ Question Button */
+        
+        .faq-question {
+            background: none;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: bold;
+            width: 100%;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: rgba(229, 9, 20, 0.1);
+        }
+        /* FAQ Answer */
+        
+        .faq-answer {
+            display: none;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ccc;
+            text-align: left;
+        }
+        /* FAQ Card Hover Effect */
+        
+        .faq-card:hover {
+            transform: translateY(-5px);
+        }
+        /* Footer Section */
+        
+        .footer-section {
+            background-color: #141414;
+            padding: 20px;
+            color: #888;
+        }
+        
+        .footer-section a {
+            color: #888;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-section .footer-info {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .reason-card1 {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            margin: 20px;
+            display: inline-block;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .reason-card1 h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .reason-card1 p {
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .reason-card1:hover {
+            transform: translateY(-10px);
+        }
+        
+        .reason-card2 {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 20px;
+            width: 100%;
+            margin: 20px;
+            display: inline-block;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .reason-card2 h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .reason-card2 p {
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+        
+        .reason-card2:hover {
+            transform: translateY(-10px);
+        }
+        /* Global Styles */
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #000;
+            color: white;
+            height: auto;
+            /* Remove excessive height */
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            /* Prevent horizontal overflow */
+        }
+        
+        .footer-section {
+            background-color: #141414;
+            padding: 20px;
+            color: #888;
+            margin-top: 20px;
+            /* Ensure footer has space from content */
+        }
+        /* Other adjustments based on your previous content */
+        
+        .footer-section .footer-info {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .footer-section select {
+            margin-top: 10px;
+            /* Adding a little margin */
+        }
+        
+        .email-input-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+            margin-bottom: 0;
+            /* Remove unnecessary bottom margin */
+        }
+        
+        .more-reasons {
+            background-color: #141414;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .more-reasons .reason-card {
+            margin-bottom: 0;
+            /* Avoid unnecessary space */
+        }
+        /* Fix padding and margins where required in footer, FAQ, etc. */
+        /* To avoid empty space below */
+        
+        body>.footer-section {
+            padding-bottom: 0;
+            /* Remove any unnecessary padding at the bottom */
+        }
+        
+        .class-1 {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .class-2 {
+            padding-left: 83px;
+        }
+        
+        .class-3 {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 15px;
+        }
+        
+        @media screen and (min-width:0px) and (max-width:932px) {
+            .class-3 {
+                grid-template-columns: auto;
+            }
+            .reason-card {
+                background-color: #333;
+                border-radius: 10px;
+                width: 70%;
+                margin: 20px;
+                display: inline-block;
+                text-align: left;
+                color: white;
+                transition: transform 0.3s ease;
+            }
+            .more-reasons {
+                text-align: center;
+                padding-left: 0px;
+                width: 85%;
+            }
+            .email-input-container {
+                display: block;
+            }
+            .start-button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: rgb(229, 9, 20);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10%;
+            }
+            .movie-card {
+                background-color: #333;
+                border-radius: 10px;
+                overflow: hidden;
+                cursor: pointer;
+                height: 350px;
+                width: 700px;
+                border-style: dashed;
+                transition: transform 0.3s ease;
+                width: 0px;
+            }
+            .movie-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: inherit;
+                border-style: dashed;
+            }
+            .movie-card h3 {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                margin: 0;
+                padding: 5px 10px;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: white;
+                background-color: rgba(0, 0, 0, 0.6);
+                border-radius: 5px;
+            }
+            .movie-card:hover {
+                transform: translateY(-10px);
+            }
+            .top-ten-movies-container {
+                display: flex;
+                background-color: #000;
+                border-style: dashed;
+            }
+            .movies-scroll {
+                margin-top: 20px;
+                margin-left: 10%;
+                transition: opacity 0.3s ease;
+                border-style: dashed;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header-section">
+        <div class="header-right">
+            <select id="language-select">
+                <option value="en-IN" selected="">English</option>
+                <option value="hi-IN">हिन्दी</option>
+            </select>
+            <a href="/in/login" class="sign-in-button">Sign In</a>
+        </div>
+        <img class="nlog" src="C:\\Users\\shannu\\Desktop\\new\\WhatsApp_Image_2025-01-03_at_14.03.40_72e78552-removebg-preview.png" alt="Netflix Logo">
+        <h1 class="main-text">Unlimited movies, TV shows and more</h1>
+        <p class="sub-text">Starts at ₹149. Cancel at any time.</p>
+        <p class="sub-text">Ready to watch? Enter your email to create or restart your membership.</p>
+        <div class="email-input-container">
+            <input class="email-input" type="email" placeholder="Enter your email">
+            <button class="start-button">Get Started</button>
+        </div>
+    </div>
+
+    <div class="trending-section">
+        <h1>Trending Now</h1>
+        <select class="trend-select">
+            <option value="movies">Movies</option>
+            <option value="tv-shows">TV Shows</option>
+        </select>
+        <select id="language-select">
+            <option value="en-IN" selected="">English</option>
+            <option value="hi-IN">हिन्दी</option>
+        </select>
+    </div>
+
+    <div class="top-ten-movies-container">
+        <div class="movies-scroll">
+            <div class="movie-card">
+                <img src="C:\\Users\\shannu\\Desktop\\new\\AAAABUOXwna5pqVzKQksz1uC4Dvh5llXEs0w8VOpevrurisjKKAnmKTOcbWtdqhzZjYTIqIcUiEpIJLP8yhTHXw9k6UeSXEPPy3hnf0.jpg" alt="Movie 1">
+                <h3>1</h3>
+            </div>
+            <div class="movie-card">
+                <img src="C:\\Users\\shannu\\Desktop\\new\\AAAABQUAB7P085DHqN30qQxWCFOEVcJoeWbIByNwvYFVTl14oBd-G4SwpQB1MQH5BG23x9LJaBUGv3IdIaJQb0QN-wkFQminLabsKe87C7ZF-ZjenrWSHD3saAqpk8PRaqDGAKiJ.jpg" alt="Movie 2">
+                <h3>2</h3>
+            </div>
+            <div class="movie-card">
+                <img src="C:\Users\shannu\Desktop\new\images.jpg">
+                <h3>3</h3>
+            </div>
+            <div class="movie-card">
+                <img src="C:\Users\shannu\Desktop\new\AAAABZkG_HOTMfXuyNhXLnGEh_xRlClMmzWzKJC6bn9Jxy_CmM7T5NUiKfWgDVrMdWvTODVcuQ3Xt-mDYo_53mLVlSXAwhfWVIHrAJY.jpg" alt="Movie 4">
+                <h3>4</h3>
+            </div>
+            <div class="movie-card">
+                <img src="C:\Users\shannu\Desktop\new\AAAABblsiAVw_4bv09eLe7JT8CeIMYVkunvQqM8H9MTaGfI2oeM-f09f0S63xXyinGKZ0j2yA_Z5C9_M0OqEk4j3JTO-EQ8kFGq0IZ8oh1hv5fZ5k0pTG_sihb9Wj6yRgieNQwxj9Q.jpg" alt="Movie 5">
+                <h3>5</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- More reasons section -->
+    <div class="more-reasons">
+        <h2>More reasons to join</h2>
+        <div class="reason-card">
+            <h3>Enjoy on your TV 🎮</h3>
+            <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players and more.</p>
+        </div>
+        <div class="reason-card">
+            <h3>Download your shows 📥</h3>
+            <p>Save your favourites easily and always have something to watch offline.</p>
+        </div>
+        <div class="reason-card">
+            <h3>No ads 🎉</h3>
+            <p>Enjoy uninterrupted streaming. Watch your favourite content without ads.</p>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <h2 class="class-1">Frequently Asked Questions</h2>
+
+    <div class="faq-section">
+        <!-- FAQ Card 1 -->
+        <div class="faq-card">
+            <button class="faq-question" onclick="toggleAnswer(this)">What is Netflix?</button>
+            <div class="faq-answer">
+                <p>Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Card 2 -->
+        <div class="faq-card">
+            <button class="faq-question" onclick="toggleAnswer(this)">How much does Netflix cost?</button>
+            <div class="faq-answer">
+                <p>Netflix offers various subscription plans starting at ₹149 per month. The pricing depends on the plan and region.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Card 3 -->
+        <div class="faq-card">
+            <button class="faq-question" onclick="toggleAnswer(this)">Where can I watch?</button>
+            <div class="faq-answer">
+                <p>You can watch Netflix on smart TVs, laptops, phones, tablets, gaming consoles, and more. Anywhere with an internet connection!</p>
+            </div>
+        </div>
+
+        <!-- FAQ Card 4 -->
+        <div class="faq-card">
+            <button class="faq-question" onclick="toggleAnswer(this)">How do I cancel?</button>
+            <div class="faq-answer">
+                <p>You can cancel your Netflix subscription at any time through your account settings on the website or app.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Card 5 -->
+        <div class="faq-card">
+            <button class="faq-question" onclick="toggleAnswer(this)">What can I watch on Netflix?</button>
+            <div class="faq-answer">
+                <p>Netflix has a vast library of content including movies, TV shows, documentaries, anime, and exclusive Netflix Originals.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Card 6 -->
+        <div class="faq-card">
+            <button class="faq-question" onclick="toggleAnswer(this)">Is Netflix good for kids?</button>
+            <div class="faq-answer">
+                <p>Yes, Netflix offers parental controls that let you set up Kids profiles with content that is appropriate for all ages.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer-section class-2">
+        <center>Ready to watch? Enter your email to create or restart your membership.</center>
+        <div class="email-input-container">
+            <input class="email-input" type="email" placeholder="Enter your email">
+            <button class="start-button">Get Started</button>
+        </div>
+        <p>Questions? Call <strong>000-800-919-1743</strong></p>
+        <div class="class-3">
+            <a href="ram.html"><u>FAQ</u></a>
+            <a href="ram.html"><u>Help Centre</u></a>
+            <a href="ram.html"><u>Account</u></a>
+            <a href="ram.html"><u>Media Centre</u></a>
+            <a href="ram.html"><u>Investor Relations</u></a>
+            <a href="ram.html"><u>Jobs</u></a>
+            <a href="ram.html"><u>Ways to Watch</u></a>
+            <a href="ram.html"><u>Terms of Use</u></a>
+            <a href="ram.html"><u>Privacy</u></a>
+            <a href="ram.html"><u>Cookie Preferences</u></a>
+            <a href="ram.html"><u>Corporate Information</u></a>
+            <a href="ram.html"><u>Contact Us</u></a>
+            <a href="ram.html"><u>Speed Test</u></a>
+            <a href="ram.html"><u>Legal Notices</u></a>
+        </div>
+        <p class="footer-info">Only on Netflix</p>
+        <select id="language-select">
+            <option value="en-IN" selected="">English</option>
+            <option value="hi-IN">हिन्दी</option>
+        </select>
+        <p class="footer-info">Netflix India</p>
+    </div>
+
+    <script>
+        // Toggle FAQ answers visibility
+        function toggleAnswer(button) {
+            const faqCard = button.parentElement;
+            faqCard.classList.toggle('open');
+            const answer = faqCard.querySelector('.faq-answer');
+            if (faqCard.classList.contains('open')) {
+                answer.style.display = 'block';
+            } else {
+                answer.style.display = 'none';
+            }
+        }
+        // Toggle 'Show More' Movies
+        function toggleMovies() {
+            const moreMovies = document.querySelector('.more-movies');
+            const showMoreBtn = document.querySelector('.show-more-btn');
+            if (moreMovies.style.display === 'block') {
+                moreMovies.style.display = 'none';
+                showMoreBtn.textContent = 'Show More';
+            } else {
+                moreMovies.style.display = 'block';
+                showMoreBtn.textContent = 'Show Less';
+            }
+        }
+    </script>
+
+
+
+</body>
+
+</html>
